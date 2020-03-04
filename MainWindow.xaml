@@ -10,11 +10,14 @@
         <Style TargetType="RadioButton" >
             <Setter Property="Margin" Value="10" />
         </Style>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="305*"/>
+            <ColumnDefinition Width="187*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <StackPanel Margin="15,20" >
@@ -24,13 +27,16 @@
                 <RadioButton  Content="Сон по установленному интервалу" GroupName="Radio1" VerticalContentAlignment="Center" />
                 <RadioButton  Content="Сигнал по установленному времени" GroupName="Radio1" VerticalContentAlignment="Center" />
                 <RadioButton  Content="Сигнал по установленному интервалу" GroupName="Radio1" VerticalContentAlignment="Center" />
-
-
-
             </StackPanel>
         </Grid>
-        <Label Content="Системное время" Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Clock" HorizontalContentAlignment="Center" Content="ffffffff" FontSize="30"  Grid.Column="1" Foreground="Green" FontWeight="Bold" FontStyle="Italic" Margin="0,36,0,182" />
-
+        <StackPanel Grid.Column="1">
+            <Label Content="Системное время" Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="Clock" HorizontalContentAlignment="Center" Content="ffffffff" FontSize="30"  Grid.Column="1" Foreground="Green" FontWeight="Bold" FontStyle="Italic" />
+            <Label Content="yyyyyyyyyyyyyyyyyyyyyyyyyy"/>
+            <StackPanel Orientation="Horizontal"  >
+                <Label FontSize="20" Content="Часы"/>
+                <Label FontSize="20" Content="Минуты" HorizontalAlignment="Right" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
