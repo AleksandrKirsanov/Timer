@@ -13,22 +13,23 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <StackPanel Margin="15,20" >
-                <RadioButton  Content="tttttttttttttttttt" GroupName="Radio1" IsChecked="True"  VerticalContentAlignment="Center"/>
-                <RadioButton  Content="tttttttttttttttttt" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="tttttttttttttttttt" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="tttttttttttttttttt" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="tttttttttttttttttt" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="tttttttttttttttttt" GroupName="Radio1" VerticalContentAlignment="Center" />
+                <RadioButton  Content="Выключение по установленному времени" GroupName="Radio1" IsChecked="True"  VerticalContentAlignment="Center"/>
+                <RadioButton  Content="Выключение по установленному интервалу" GroupName="Radio1" VerticalContentAlignment="Center" />
+                <RadioButton  Content="Спящий режим по установленному времени" GroupName="Radio1" VerticalContentAlignment="Center" />
+                <RadioButton  Content="Спящий режим по установленному интервалу" GroupName="Radio2" VerticalContentAlignment="Center" />
+                <RadioButton  Content="Сигнал по установленному времени" GroupName="Radio2" VerticalContentAlignment="Center" />
+                <RadioButton  Content="Сигнал по установленному интервалу" GroupName="Radio3" VerticalContentAlignment="Center" />
 
 
 
             </StackPanel>
         </Grid>
+        <Label Content="Системное время" Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
