@@ -20,8 +20,8 @@
             <StackPanel Margin="15,20" >
                 <RadioButton  Content="Выключение по установленному времени" GroupName="Radio1" IsChecked="True"  VerticalContentAlignment="Center"/>
                 <RadioButton  Content="Выключение по установленному интервалу" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="Спящий режим по установленному времени" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="Спящий режим по установленному интервалу" GroupName="Radio2" VerticalContentAlignment="Center" />
+                <RadioButton  Content="Сон по установленному времени" GroupName="Radio1" VerticalContentAlignment="Center" />
+                <RadioButton  Content="Сон по установленному интервалу" GroupName="Radio2" VerticalContentAlignment="Center" />
                 <RadioButton  Content="Сигнал по установленному времени" GroupName="Radio2" VerticalContentAlignment="Center" />
                 <RadioButton  Content="Сигнал по установленному интервалу" GroupName="Radio3" VerticalContentAlignment="Center" />
 
