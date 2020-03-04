@@ -30,6 +30,7 @@
             </StackPanel>
         </Grid>
         <Label Content="Системное время" Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Clock" HorizontalContentAlignment="Center" Content="ffffffff" FontSize="30"  Grid.Column="1" Foreground="Green" FontWeight="Bold" FontStyle="Italic" Margin="0,36,0,182" />
 
     </Grid>
 </Window>
