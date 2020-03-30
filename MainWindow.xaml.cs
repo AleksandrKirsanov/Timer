@@ -26,6 +26,7 @@ namespace Timer
     public partial class MainWindow : Window
     {
         DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 500) };
+     
         Stopwatch stopwatch = new Stopwatch();
 
 
@@ -43,7 +44,7 @@ namespace Timer
 
 
         }
-
+        delegate void delegateMetod();
 
         private void Timer_Tick(object sender, EventArgs e) // таймер выводит на форму текущее время
         {
@@ -55,6 +56,13 @@ namespace Timer
 
         private void HourPlus_Click(object sender, RoutedEventArgs e) // 
         {
+
+            Method1(HourPl);
+
+
+        }
+        void HourPl()
+        {
             if (Global.Hour < 24)
             {
                 Global.Hour = Global.Hour + 1;
@@ -64,17 +72,18 @@ namespace Timer
                 Global.Hour = 0;
             }
             Hour.Content = Global.Hour;
-
-
-
         }
-
-
 
 
         private void HourMinus_Click(object sender, RoutedEventArgs e)
         {
 
+            HourMin();
+
+        }
+
+        void HourMin()
+        {
             if (Global.Hour > 0)
             {
                 Global.Hour--;
@@ -87,7 +96,14 @@ namespace Timer
 
         }
 
+
+
         private void MinutePlus_Click(object sender, RoutedEventArgs e)
+        {
+            MinutePl();
+        }
+
+        void MinutePl()
         {
             if (Global.Minute < 60)
             {
@@ -100,7 +116,14 @@ namespace Timer
             Minute.Content = Global.Minute;
         }
 
+
         private void MinuteMinus_Click(object sender, RoutedEventArgs e)
+        {
+
+            MinuteMin();
+        }
+
+        void MinuteMin()
         {
             if (Global.Minute > 0)
             {
@@ -111,14 +134,25 @@ namespace Timer
                 Global.Minute = 60;
             }
             Minute.Content = Global.Minute;
+        }
 
+        void Method1(delegateMetod delegateMetod)
+        {
+            delegateMetod();
         }
 
 
 
-        private void HourPlus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void HourPlus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           TimeInterval.Content = "ffffffffffffffff";
+           Method1(HourPl);
+        }
+
+
+
+        private void HourPlus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+             
         }
     }
 }
