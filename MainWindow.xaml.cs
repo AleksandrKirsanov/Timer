@@ -25,9 +25,8 @@ namespace Timer
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 500) };
-     
-        Stopwatch stopwatch = new Stopwatch();
+
+        string Avtozapolnenie = "No";
 
 
         public MainWindow()
@@ -37,6 +36,9 @@ namespace Timer
             Hour.Content = Global.Hour;
             Minute.Content = Global.Minute;
 
+            DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 500) }; // Половина секунды
+            timer1.Tick += Timer1_Tick;
+            timer1.Start();
             DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) }; // 1 секунда
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -44,7 +46,27 @@ namespace Timer
 
 
         }
-        delegate void delegateMetod();
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            switch (Avtozapolnenie)
+            {
+                case "HourPl":
+                    HourPl();
+                    break;
+                case "HourMin":
+                    HourMin();
+                    break;
+                case "MinutePl":
+                    MinutePl();
+                    break;
+                case "MinuteMin":
+                    MinuteMin();
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void Timer_Tick(object sender, EventArgs e) // таймер выводит на форму текущее время
         {
@@ -54,10 +76,12 @@ namespace Timer
             Clock.Content = dateTime.ToString().Substring(dateTime.ToString().Length - 9);
         }
 
+        #region Кнопки
+
         private void HourPlus_Click(object sender, RoutedEventArgs e) // 
         {
 
-            Method1(HourPl);
+            HourPl();
 
 
         }
@@ -73,7 +97,6 @@ namespace Timer
             }
             Hour.Content = Global.Hour;
         }
-
 
         private void HourMinus_Click(object sender, RoutedEventArgs e)
         {
@@ -96,8 +119,6 @@ namespace Timer
 
         }
 
-
-
         private void MinutePlus_Click(object sender, RoutedEventArgs e)
         {
             MinutePl();
@@ -115,7 +136,6 @@ namespace Timer
             }
             Minute.Content = Global.Minute;
         }
-
 
         private void MinuteMinus_Click(object sender, RoutedEventArgs e)
         {
@@ -136,23 +156,53 @@ namespace Timer
             Minute.Content = Global.Minute;
         }
 
-        void Method1(delegateMetod delegateMetod)
-        {
-            delegateMetod();
-        }
-
-
+        #endregion
 
         private void HourPlus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           Method1(HourPl);
+           
+           
+         Avtozapolnenie = "HourPl";
+           
+               
+            
         }
-
-
 
         private void HourPlus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-             
+            Avtozapolnenie = "No";
+         
+        }
+
+        private void HourMinus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "HourMin";
+        }
+
+        private void HourMinus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "No";
+        }
+
+        private void MinutePlus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "MinutePl";
+        }
+
+        private void MinutePlus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "No";
+
+        }
+
+        private void MinuteMinus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "MinuteMin";
+        }
+
+        private void MinuteMinus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "No";
         }
     }
 }

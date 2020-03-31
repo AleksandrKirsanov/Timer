@@ -42,9 +42,9 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="HourPlus" Content="+" FontSize="20" Width="30" Margin="10" Click="HourPlus_Click"  PreviewMouseLeftButtonDown ="HourPlus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="HourPlus_PreviewMouseLeftButtonUp"/>
-                <Button x:Name="HourMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="HourMinus_Click"/>
-                <Button x:Name="MinutePlus" Content="+" FontSize="20" Width="30" Margin="10" Click="MinutePlus_Click"/>
-                <Button x:Name="MinuteMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="MinuteMinus_Click" />
+                <Button x:Name="HourMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="HourMinus_Click" PreviewMouseLeftButtonDown="HourMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="HourMinus_PreviewMouseLeftButtonUp"/>
+                <Button x:Name="MinutePlus" Content="+" FontSize="20" Width="30" Margin="10" Click="MinutePlus_Click" PreviewMouseLeftButtonDown="MinutePlus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="MinutePlus_PreviewMouseLeftButtonUp" />
+                <Button x:Name="MinuteMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="MinuteMinus_Click" PreviewMouseLeftButtonDown="MinuteMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="MinuteMinus_PreviewMouseLeftButtonUp"/>
             </StackPanel>
         </StackPanel>
     </Grid>
