@@ -28,44 +28,9 @@ namespace Timer
 
         string Avtozapolnenie = "No"; //Переменная для управления заполнением 
 
-
-        public MainWindow() // Конструктор 
-        {
-            InitializeComponent();
-
-            Hour.Content = Global.Hour;
-            Minute.Content = Global.Minute;
-
-            DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 500) }; // Половина секунды
-            timer1.Tick += Timer1_Tick;
-            timer1.Start();
-            DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) }; // 1 секунда
-            timer.Tick += Timer_Tick;
-            timer.Start();
-
-            Radio0.IsChecked = true;
-
-        }
-
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            switch (Avtozapolnenie)
-            {
-                case "HourPl":
-                    HourPl();
-                    break;
-                case "HourMin":
-                    HourMin();
-                    break;
-                case "MinutePl":
-                    MinutePl();
-                    break;
-                case "MinuteMin":
-                    MinuteMin();
-                    break;
-                default:
-                    break;
-            }
+            Avto();
         }// Таймер задержки автозаполнения
 
         private void Timer_Tick(object sender, EventArgs e) // таймер выводит на форму текущее время
@@ -76,66 +41,50 @@ namespace Timer
             Clock.Content = dateTime.ToString().Substring(dateTime.ToString().Length - 9);
         }
 
+        public MainWindow() // Конструктор 
+        {
+            InitializeComponent();
+           
+            Hour.Content = Global.Hour;
+            Minute.Content = Global.Minute;
+            Second.Content = Global.Second;
+            DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 200) }; // Половина секунды
+            timer1.Tick += Timer1_Tick;
+            timer1.Start();
+            DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) }; // 1 секунда
+            timer.Tick += Timer_Tick;
+            timer.Start();
+           
+           RadioTimeOff.IsChecked  = true;
+            
+
+
+        }
+
+
         #region Кнопки
 
         private void HourPlus_Click(object sender, RoutedEventArgs e) // 
         {
 
-            HourPl();
+           HourPl();
 
 
-        }
-        void HourPl()
-        {
-            if (Global.Hour < 23)
-            {
-                Global.Hour = Global.Hour + 1;
-            }
-            else
-            {
-                Global.Hour = 0;
-            }
-            Hour.Content = Global.Hour;
         }
 
         private void HourMinus_Click(object sender, RoutedEventArgs e)
         {
 
-            HourMin();
+           HourMin();
 
         }
 
-        void HourMin()
-        {
-            if (Global.Hour > 0)
-            {
-                Global.Hour--;
-            }
-            else
-            {
-                Global.Hour = 23;
-            }
-            Hour.Content = Global.Hour;
-
-        }
 
         private void MinutePlus_Click(object sender, RoutedEventArgs e)
         {
             MinutePl();
         }
 
-        void MinutePl()
-        {
-            if (Global.Minute < 59)
-            {
-                Global.Minute++;
-            }
-            else
-            {
-                Global.Minute = 0;
-            }
-            Minute.Content = Global.Minute;
-        }
 
         private void MinuteMinus_Click(object sender, RoutedEventArgs e)
         {
@@ -143,18 +92,6 @@ namespace Timer
             MinuteMin();
         }
 
-        void MinuteMin()
-        {
-            if (Global.Minute > 0)
-            {
-                Global.Minute--;
-            }
-            else
-            {
-                Global.Minute = 59;
-            }
-            Minute.Content = Global.Minute;
-        }
 
         private void HourPlus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -202,42 +139,193 @@ namespace Timer
         {
             Avtozapolnenie = "No";
         }
-        #endregion
 
-        #region Radiobutton
-        private void START_Click(object sender, RoutedEventArgs e)
+
+        private void SecondPlus_Click(object sender, RoutedEventArgs e)
         {
+            SecondPl();
+        }
+
+        private void SecondPlus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "SecondPl";
+        } 
+
+        private void SecondPlus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "No";
+        }
+
+        private void SecondMinus_Click(object sender, RoutedEventArgs e)
+        {
+            SecondMin();
+        }
+
+        private void SecondMinus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "SecondMin";
+        }
+
+        private void SecondMinus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Avtozapolnenie = "No";
 
         }
 
+        private void START_Click(object sender, RoutedEventArgs e)
+        {
+
+           
+        }
+        #endregion
+
+        #region Radiobutton
+
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            TimeInterval.Content = "Выключение по  времени";
+          
+            Global.Mode = RadioTimeOff.Name;  
+            TimeInterval.Content = Global.Mode;
         }
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-            TimeInterval.Content = "Выключение по интервалу";
+            Global.Mode = RadioInterwalOff.Name;
+            TimeInterval.Content = Global.Mode;
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
         {
-            TimeInterval.Content = "3333333333333";
+            Global.Mode = RadioTimeSleep.Name;
+            TimeInterval.Content = Global.Mode;
         }
 
         private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
         {
-            TimeInterval.Content = "4444444444444";
+            Global.Mode = RadioIntervalSleep.Name;
+            TimeInterval.Content = Global.Mode;
         }
 
         private void RadioButton_Checked_4(object sender, RoutedEventArgs e)
         {
-            TimeInterval.Content = "55555555555555555555";
+            Global.Mode = RadioTimeSignal.Name;
+            TimeInterval.Content = Global.Mode;
         }
 
         private void RadioButton_Checked_5(object sender, RoutedEventArgs e)
         {
-            TimeInterval.Content = "6666666666666666666666";
+            Global.Mode = RadioIntervalSignal.Name;
+            TimeInterval.Content = Global.Mode;
+        }
+
+        #endregion
+
+        #region Методы
+
+        void HourPl()
+        {
+            if (Global.Hour < 23)
+            {
+                Global.Hour = Global.Hour + 1;
+            }
+            else
+            {
+                Global.Hour = 0;
+            }
+            Hour.Content = Global.Hour;
+        }
+
+        void HourMin()
+        {
+            if (Global.Hour > 0)
+            {
+                Global.Hour--;
+            }
+            else
+            {
+                Global.Hour = 23;
+            }
+            Hour.Content = Global.Hour;
+
+        }
+
+        void MinutePl()
+        {
+            if (Global.Minute < 59)
+            {
+                Global.Minute++;
+            }
+            else
+            {
+                Global.Minute = 0;
+            }
+            Minute.Content = Global.Minute;
+        }
+
+        void MinuteMin()
+        {
+            if (Global.Minute > 0)
+            {
+                Global.Minute--;
+            }
+            else
+            {
+                Global.Minute = 59;
+            }
+            Minute.Content = Global.Minute;
+        }
+
+        void SecondPl()
+        {
+            if (Global.Second < 59)
+            {
+                Global.Second++;
+            }
+            else
+            {
+                Global.Second = 0;
+            }
+            Second.Content = Global.Second;
+        }
+
+        void SecondMin()
+        {
+            if (Global.Second > 0)
+            {
+                Global.Second--;
+            }
+            else
+            {
+                Global.Minute = 59;
+            }
+            Second.Content = Global.Second;
+        }
+
+        void Avto()
+        {
+            switch (Avtozapolnenie)
+            {
+                case "HourPl":
+                    HourPl();
+                    break;
+                case "HourMin":
+                    HourMin();
+                    break;
+                case "MinutePl":
+                    MinutePl();
+                    break;
+                case "MinuteMin":
+                    MinuteMin();
+                    break;
+                case "SecondPl":
+                    SecondPl();
+                    break;
+                case "SecondMin":
+                    SecondMin();
+                    break;
+                default:
+                    break;
+            }
         }
         #endregion
     }

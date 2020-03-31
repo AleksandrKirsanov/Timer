@@ -10,10 +10,11 @@ namespace Timer
     {
 
          
-     static DateTime  dateSet = DateTime.Now; //  Часы при срабатывании по часам
-        static public int Hour = dateSet.Hour;//  Минуты при срабатывании по часам
-        static public int Minute = dateSet.Minute;// Минуты при срабатывании по таймеру
-        static public int HourInterval = 0;// Часы при срабатывании по таймеру
+     static DateTime  dateSet = DateTime.Now; //  
+        static public int Hour = dateSet.Hour;//  
+        static public int Minute = dateSet.Minute;// 
+        static public int Second = dateSet.Second;
+        static public string Mode = "";
 
 
     }

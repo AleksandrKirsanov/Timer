@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Timer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="386" Width="500" >
+        Title="MainWindow" Height="386" Width="557.625" >
     <Window.Resources>
         <Style TargetType="RadioButton" >
             <Setter Property="Margin" Value="10" />
@@ -21,13 +21,13 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <StackPanel Margin="15,20" >
-                <RadioButton x:Name="Radio0" Content="Выключение по  времени" GroupName="Radio1"  VerticalContentAlignment="Center" Checked="RadioButton_Checked" />
-                <RadioButton   Content="Выключение по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_1" />
-                <RadioButton  Content="Сон по времени" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_2" />
-                <RadioButton  Content="Сон по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_3"/>
-                <RadioButton  Content="Сигнал по времени" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_4"/>
-                <RadioButton  Content="Сигнал по у интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_5"/>
+            <StackPanel Margin="15,20" x:Name="StackRadio" >
+                <RadioButton x:Name="RadioTimeOff" Content="Выключение по  времени" GroupName="Radio1"  VerticalContentAlignment="Center" Checked="RadioButton_Checked"  />
+                <RadioButton x:Name="RadioInterwalOff"  Content="Выключение по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_1" />
+                <RadioButton x:Name="RadioTimeSleep" Content="Сон по времени" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_2" />
+                <RadioButton x:Name="RadioIntervalSleep" Content="Сон по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_3"/>
+                <RadioButton x:Name="RadioTimeSignal" Content="Сигнал по времени" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_4"/>
+                <RadioButton x:Name="RadioIntervalSignal"  Content="Сигнал по у интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_5"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Column="1">
@@ -38,13 +38,16 @@
 
             <StackPanel Orientation="Horizontal"  >
                 <Label x:Name="Hour" FontSize="20" Content="Часы" Height="32"/>
-                <Label x:Name="Minute" FontSize="20" Content="Минуты" HorizontalAlignment="Right" Height="34" />
+                <Label x:Name="Minute" FontSize="20" Content="Минуты" HorizontalAlignment="Center" Height="34" />
+                <Label x:Name="Second" FontSize="20" Content="Секунды" HorizontalAlignment="Right" Height="34"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="HourPlus" Content="+" FontSize="20" Width="30" Margin="10" Click="HourPlus_Click"  PreviewMouseLeftButtonDown ="HourPlus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="HourPlus_PreviewMouseLeftButtonUp"/>
                 <Button x:Name="HourMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="HourMinus_Click" PreviewMouseLeftButtonDown="HourMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="HourMinus_PreviewMouseLeftButtonUp"/>
                 <Button x:Name="MinutePlus" Content="+" FontSize="20" Width="30" Margin="10" Click="MinutePlus_Click" PreviewMouseLeftButtonDown="MinutePlus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="MinutePlus_PreviewMouseLeftButtonUp" />
                 <Button x:Name="MinuteMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="MinuteMinus_Click" PreviewMouseLeftButtonDown="MinuteMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="MinuteMinus_PreviewMouseLeftButtonUp"/>
+                <Button x:Name="SecondPlus" Content="+" FontSize="20" Width="30" Margin="10" Click="SecondPlus_Click" PreviewMouseLeftButtonDown="SecondPlus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="SecondPlus_PreviewMouseLeftButtonUp"/>
+                <Button x:Name="SecondMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="SecondMinus_Click" PreviewMouseLeftButtonDown="SecondMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="SecondMinus_PreviewMouseLeftButtonUp"/>
             </StackPanel>
             <Button x:Name="START" Content="Start!!" Margin="20" Click="START_Click"/>
         </StackPanel>
