@@ -26,10 +26,10 @@ namespace Timer
     public partial class MainWindow : Window
     {
 
-        string Avtozapolnenie = "No";
+        string Avtozapolnenie = "No"; //Переменная для управления заполнением 
 
 
-        public MainWindow()
+        public MainWindow() // Конструктор 
         {
             InitializeComponent();
 
@@ -158,18 +158,18 @@ namespace Timer
 
         private void HourPlus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           
-           
-         Avtozapolnenie = "HourPl";
-           
-               
-            
+
+
+            Avtozapolnenie = "HourPl";
+
+
+
         }
 
         private void HourPlus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Avtozapolnenie = "No";
-         
+
         }
 
         private void HourMinus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -204,9 +204,10 @@ namespace Timer
         }
         #endregion
 
+        #region Radiobutton
         private void START_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -238,6 +239,7 @@ namespace Timer
         {
             TimeInterval.Content = "6666666666666666666666";
         }
-    }  
-    
+        #endregion
+    }
+
 }
