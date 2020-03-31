@@ -43,7 +43,7 @@ namespace Timer
             timer.Tick += Timer_Tick;
             timer.Start();
 
-
+            Radio0.IsChecked = true;
 
         }
 
@@ -66,7 +66,7 @@ namespace Timer
                 default:
                     break;
             }
-        }
+        }// Таймер задержки автозаполнения
 
         private void Timer_Tick(object sender, EventArgs e) // таймер выводит на форму текущее время
         {
@@ -87,7 +87,7 @@ namespace Timer
         }
         void HourPl()
         {
-            if (Global.Hour < 24)
+            if (Global.Hour < 23)
             {
                 Global.Hour = Global.Hour + 1;
             }
@@ -113,7 +113,7 @@ namespace Timer
             }
             else
             {
-                Global.Hour = 24;
+                Global.Hour = 23;
             }
             Hour.Content = Global.Hour;
 
@@ -126,7 +126,7 @@ namespace Timer
 
         void MinutePl()
         {
-            if (Global.Minute < 60)
+            if (Global.Minute < 59)
             {
                 Global.Minute++;
             }
@@ -151,12 +151,10 @@ namespace Timer
             }
             else
             {
-                Global.Minute = 60;
+                Global.Minute = 59;
             }
             Minute.Content = Global.Minute;
         }
-
-        #endregion
 
         private void HourPlus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -204,5 +202,42 @@ namespace Timer
         {
             Avtozapolnenie = "No";
         }
-    }
+        #endregion
+
+        private void START_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            TimeInterval.Content = "Выключение по  времени";
+        }
+
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            TimeInterval.Content = "Выключение по интервалу";
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            TimeInterval.Content = "3333333333333";
+        }
+
+        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
+        {
+            TimeInterval.Content = "4444444444444";
+        }
+
+        private void RadioButton_Checked_4(object sender, RoutedEventArgs e)
+        {
+            TimeInterval.Content = "55555555555555555555";
+        }
+
+        private void RadioButton_Checked_5(object sender, RoutedEventArgs e)
+        {
+            TimeInterval.Content = "6666666666666666666666";
+        }
+    }  
+    
 }

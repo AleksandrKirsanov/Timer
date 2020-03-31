@@ -17,17 +17,17 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="103*"/>
-            <ColumnDefinition Width="121*"/>
-            <ColumnDefinition Width="22*"/>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <StackPanel Margin="15,20" >
-                <RadioButton  Content="Выключение по  времени" GroupName="Radio1" IsChecked="True"  VerticalContentAlignment="Center"/>
-                <RadioButton  Content="Выключение по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="Сон по времени" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="Сон по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="Сигнал по времени" GroupName="Radio1" VerticalContentAlignment="Center" />
-                <RadioButton  Content="Сигнал по у интервалу" GroupName="Radio1" VerticalContentAlignment="Center" />
+                <RadioButton x:Name="Radio0" Content="Выключение по  времени" GroupName="Radio1"  VerticalContentAlignment="Center" Checked="RadioButton_Checked" />
+                <RadioButton   Content="Выключение по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_1" />
+                <RadioButton  Content="Сон по времени" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_2" />
+                <RadioButton  Content="Сон по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_3"/>
+                <RadioButton  Content="Сигнал по времени" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_4"/>
+                <RadioButton  Content="Сигнал по у интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_5"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Column="1">
@@ -46,6 +46,7 @@
                 <Button x:Name="MinutePlus" Content="+" FontSize="20" Width="30" Margin="10" Click="MinutePlus_Click" PreviewMouseLeftButtonDown="MinutePlus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="MinutePlus_PreviewMouseLeftButtonUp" />
                 <Button x:Name="MinuteMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="MinuteMinus_Click" PreviewMouseLeftButtonDown="MinuteMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="MinuteMinus_PreviewMouseLeftButtonUp"/>
             </StackPanel>
+            <Button x:Name="START" Content="Start!!" Margin="20" Click="START_Click"/>
         </StackPanel>
     </Grid>
 </Window>
