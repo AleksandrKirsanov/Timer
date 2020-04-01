@@ -48,17 +48,23 @@ namespace Timer
             Hour.Content = Global.Hour;
             Minute.Content = Global.Minute;
             Second.Content = Global.Second;
-            DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 200) }; // Половина секунды
+            DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 200) }; // таймер для автозаполнения формы
             timer1.Tick += Timer1_Tick;
             timer1.Start();
-            DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) }; // 1 секунда
+            DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) }; //Таймер для часов -  1 секунда 
             timer.Tick += Timer_Tick;
             timer.Start();
-           
+            DispatcherTimer dispatcherTimer = new DispatcherTimer(); // таймер для выполнения задания 
            RadioTimeOff.IsChecked  = true;
-            
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);// В скобках интервал в секундах
 
 
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e) // Обработчик события таймера задания
+        {
+            throw new NotImplementedException();
         }
 
 
