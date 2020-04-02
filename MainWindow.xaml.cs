@@ -297,7 +297,7 @@ namespace Timer
             }
             else
             {
-                Global.Minute = 59;
+                Global.Second = 59;
             }
             Second.Content = Global.Second;
         }
