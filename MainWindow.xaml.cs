@@ -44,10 +44,10 @@ namespace Timer
         public MainWindow() // Конструктор 
         {
             InitializeComponent();
-           
-            Hour.Content = Global.Hour;
-            Minute.Content = Global.Minute;
-            Second.Content = Global.Second;
+
+            //Hour.Content = Global.Hour;
+            //Minute.Content = Global.Minute;
+            //Second.Content = Global.Second;
             DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 200) }; // таймер для автозаполнения формы
             timer1.Tick += Timer1_Tick;
             timer1.Start();
@@ -55,7 +55,7 @@ namespace Timer
             timer.Tick += Timer_Tick;
             timer.Start();
             DispatcherTimer dispatcherTimer = new DispatcherTimer(); // таймер для выполнения задания 
-           RadioTimeOff.IsChecked  = true;
+            RadioTimeOff.IsChecked = true;
             dispatcherTimer.Tick += DispatcherTimer_Tick;
             dispatcherTimer.Interval = TimeSpan.FromSeconds(1);// В скобках интервал в секундах
 
@@ -68,12 +68,12 @@ namespace Timer
         }
 
 
-        #region Кнопки
+        #region Кнопки установки времени
 
         private void HourPlus_Click(object sender, RoutedEventArgs e) // 
         {
 
-           HourPl();
+            HourPl();
 
 
         }
@@ -81,7 +81,7 @@ namespace Timer
         private void HourMinus_Click(object sender, RoutedEventArgs e)
         {
 
-           HourMin();
+            HourMin();
 
         }
 
@@ -155,7 +155,7 @@ namespace Timer
         private void SecondPlus_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Avtozapolnenie = "SecondPl";
-        } 
+        }
 
         private void SecondPlus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -178,19 +178,14 @@ namespace Timer
 
         }
 
-        private void START_Click(object sender, RoutedEventArgs e)
-        {
-
-           
-        }
         #endregion
 
         #region Radiobutton
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-          
-            Global.Mode = RadioTimeOff.Name;  
+
+            Global.Mode = RadioTimeOff.Name;
             TimeInterval.Content = Global.Mode;
         }
 
@@ -334,6 +329,21 @@ namespace Timer
             }
         }
         #endregion
+
+        #region кнопки Start  и Stop
+        private void START_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+        private void STOP_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        #endregion
+
     }
 
 }

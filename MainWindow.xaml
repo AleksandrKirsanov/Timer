@@ -34,13 +34,18 @@
             <Label x:Name="Clock" HorizontalContentAlignment="Center" Content="ffffffff" FontSize="30"  Grid.Column="1" Foreground="Green" FontWeight="Bold" FontStyle="Italic" />
             <Label x:Name="TimeInterval" Content="Время срабатывания / интервал" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="225" Height="34"/>
 
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Label x:Name="Hour" FontSize="30" Content="00" Grid.Column="0" HorizontalAlignment="Center" />
+                <Label x:Name="Minute" FontSize="30" Content="00" Grid.Column="1" HorizontalAlignment="Center" />
+                <Label x:Name="Second" FontSize="30" Content="00" Grid.Column="2" HorizontalAlignment="Center" />
+            </Grid>
 
-
-            <StackPanel Orientation="Horizontal"  >
-                <Label x:Name="Hour" FontSize="20" Content="Часы" Height="32"/>
-                <Label x:Name="Minute" FontSize="20" Content="Минуты" HorizontalAlignment="Center" Height="34" />
-                <Label x:Name="Second" FontSize="20" Content="Секунды" HorizontalAlignment="Right" Height="34"/>
-            </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="HourPlus" Content="+" FontSize="20" Width="30" Margin="10" Click="HourPlus_Click"  PreviewMouseLeftButtonDown ="HourPlus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="HourPlus_PreviewMouseLeftButtonUp"/>
                 <Button x:Name="HourMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="HourMinus_Click" PreviewMouseLeftButtonDown="HourMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="HourMinus_PreviewMouseLeftButtonUp"/>
@@ -50,6 +55,7 @@
                 <Button x:Name="SecondMinus" Content="-" FontSize="20" Width="30" Margin="10" Click="SecondMinus_Click" PreviewMouseLeftButtonDown="SecondMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="SecondMinus_PreviewMouseLeftButtonUp"/>
             </StackPanel>
             <Button x:Name="START" Content="Start!!" Margin="20" Click="START_Click"/>
+            <Button x:Name="STOP" Content="Stop!!" Margin="20" Click="STOP_Click" />
         </StackPanel>
     </Grid>
 </Window>
