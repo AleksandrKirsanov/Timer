@@ -10,7 +10,7 @@ namespace Timer
     {
 
          
-     static DateTime  dateSet = DateTime.Now; //  
+     static public DateTime  dateSet = DateTime.Now; //  
         static public int Hour = dateSet.Hour;//  
         static public int Minute = dateSet.Minute;// 
         static public int Second = dateSet.Second;
