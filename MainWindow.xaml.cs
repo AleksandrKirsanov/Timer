@@ -45,9 +45,9 @@ namespace Timer
         {
             InitializeComponent();
 
-            //Hour.Content = Global.Hour;
-            //Minute.Content = Global.Minute;
-            //Second.Content = Global.Second;
+            Hour.Content = Global.Hour;
+            Minute.Content = Global.Minute;
+            Second.Content = Global.Second;
             DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 200) }; // таймер для автозаполнения формы
             timer1.Tick += Timer1_Tick;
             timer1.Start();
@@ -61,6 +61,7 @@ namespace Timer
 
 
         }
+
 
         private void DispatcherTimer_Tick(object sender, EventArgs e) // Обработчик события таймера задания
         {
@@ -329,7 +330,7 @@ namespace Timer
             }
         }
 
-        int IntervalTimer() // метод возвращает величину установленного интервала времени в милисекундах.
+        int IntervalTimerInternal() // метод возвращает величину установленного интервала времени в милисекундах.
         {
             int interval = 0;
             int.TryParse(Second.Content.ToString(), out int rezultSecond);
@@ -343,25 +344,46 @@ namespace Timer
             return interval;
         }
 
-        #endregion
-
-        #region кнопки Start  и Stop
-        private void START_Click(object sender, RoutedEventArgs e)
+        int IntervalTimerTime()// Метод возвращает величину интервала установленного по времени в милисекундах
         {
+            int interval = 0;
             int IntervalDate = 0;
             int intervalTimer = 0;
             int.TryParse(Hour.Content.ToString(), out int HourTimer);
             int.TryParse(Minute.Content.ToString(), out int MinuteTimer);
             int.TryParse(Second.Content.ToString(), out int SecondTimer);
             // Подсчитаем интервал времени с начала суток в секундах, выставленный в задании
-            intervalTimer = intervalTimer + SecondTimer + MinuteTimer*60+HourTimer*3600;
+            intervalTimer = intervalTimer + SecondTimer + MinuteTimer * 60 + HourTimer * 3600;
             //Подсчитаем количество секунд, прошедших с начала текущих суток
             DateTime dateTime = new DateTime();
             dateTime = DateTime.Now;
-            IntervalDate = IntervalDate + dateTime.Second + dateTime.Minute * 60 + dateTime.Hour;
+            IntervalDate = IntervalDate + dateTime.Second + dateTime.Minute * 60 + dateTime.Hour * 3600;
 
-            
+            if (intervalTimer >= IntervalDate)
+            {
+                interval =   intervalTimer - IntervalDate;
+            }
+            else
+            {
+                interval = 86400 - IntervalDate + intervalTimer;
+            }
+
+            return interval *1000;
+
         }
+
+        
+
+        #endregion
+
+
+
+        #region кнопки Start  и Stop
+        private void START_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void STOP_Click(object sender, RoutedEventArgs e)
         {
 
