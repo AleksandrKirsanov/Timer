@@ -23,10 +23,17 @@ namespace Timer
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+
+    delegate void Scenario();
+
     public partial class MainWindow : Window
     {
 
+
+
         string Avtozapolnenie = "No"; //Переменная для управления заполнением 
+        int IntervalZadanija = 0; // Остаток времени до выполнения задания
+        bool StartStop = false;
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
@@ -39,7 +46,19 @@ namespace Timer
             dateTime = DateTime.Now;
 
             Clock.Content = dateTime.ToString().Substring(dateTime.ToString().Length - 9);
+
+            if (StartStop && IntervalZadanija == 0)
+            {
+                // Здесь выполнение задания
+                TimeInterval.Content = "Сработало!!!!";
+            }
+            else if (StartStop && IntervalZadanija > 0)
+            {
+                IntervalZadanija--;
+            }
+
         }
+
 
         public MainWindow() // Конструктор 
         {
@@ -48,25 +67,25 @@ namespace Timer
             Hour.Content = Global.Hour;
             Minute.Content = Global.Minute;
             Second.Content = Global.Second;
-            DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 200) }; // таймер для автозаполнения формы
+            DispatcherTimer timer1 = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 250) }; // таймер для автозаполнения формы
             timer1.Tick += Timer1_Tick;
             timer1.Start();
             DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) }; //Таймер для часов -  1 секунда 
             timer.Tick += Timer_Tick;
             timer.Start();
-            DispatcherTimer dispatcherTimer = new DispatcherTimer(); // таймер для выполнения задания 
             RadioTimeOff.IsChecked = true;
-            dispatcherTimer.Tick += DispatcherTimer_Tick;
-            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);// В скобках интервал в секундах
+
 
 
         }
 
 
-        private void DispatcherTimer_Tick(object sender, EventArgs e) // Обработчик события таймера задания
-        {
-            throw new NotImplementedException();
-        }
+
+
+
+
+
+
 
 
         #region Кнопки установки времени
@@ -330,7 +349,7 @@ namespace Timer
             }
         }
 
-        int IntervalTimerInternal() // метод возвращает величину установленного интервала времени в милисекундах.
+        int IntervalTimerInternal() // метод возвращает величину установленного интервала времени в секундах.
         {
             int interval = 0;
             int.TryParse(Second.Content.ToString(), out int rezultSecond);
@@ -339,12 +358,12 @@ namespace Timer
             interval = interval + rezultMinute * 60;
             int.TryParse(Hour.Content.ToString(), out int rezultHour);
             interval = interval + rezultHour * 3600;
-            interval = interval * 1000;
+
 
             return interval;
         }
 
-        int IntervalTimerTime()// Метод возвращает величину интервала установленного по времени в милисекундах
+        int IntervalTimerTime()// Метод возвращает величину интервала установленного по времени в секундах
         {
             int interval = 0;
             int IntervalDate = 0;
@@ -361,26 +380,72 @@ namespace Timer
 
             if (intervalTimer >= IntervalDate)
             {
-                interval =   intervalTimer - IntervalDate;
+                interval = intervalTimer - IntervalDate;
             }
             else
             {
                 interval = 86400 - IntervalDate + intervalTimer;
             }
 
-            return interval *1000;
+            return interval;
 
         }
 
-        
+        void scenario() // метод реализации сценария выполнения задания НЕ ЗАКОНЧЕН!!!
+        {
+            switch (Global.Mode)
+            {
+                case "RadioTimeOff":
+                    break;
+                case "RadioInterwalOff":
+                    break;
+                case "RadioTimeSleep":
+                    break;
+                case "RadioIntervalSleep":
+                    break;
+                case "RadioTimeSignal":
+                    break;
+                case "RadioIntervalSignal":
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         #endregion
 
 
 
         #region кнопки Start  и Stop
-        private void START_Click(object sender, RoutedEventArgs e)
+        private void START_Click(object sender, RoutedEventArgs e)// Обработчик кнопки Start обращается к методам вычисления интервала и запускает выполнение задания
         {
+
+            switch (Global.Mode)
+            {
+                case "RadioTimeOff":
+                   IntervalZadanija =IntervalTimerTime();
+                    break;
+                case "RadioInterwalOff":
+                   IntervalZadanija =IntervalTimerInternal();
+                    break;
+                case "RadioTimeSleep":
+                    IntervalZadanija = IntervalTimerTime();
+                    break;
+                case "RadioIntervalSleep":
+                    IntervalZadanija = IntervalTimerInternal();
+                    break;
+                case "RadioTimeSignal":
+                    IntervalZadanija = IntervalTimerTime();
+                    break;
+                case "RadioIntervalSignal":
+                    IntervalZadanija = IntervalTimerInternal();
+                    break;
+                default:
+                    break;
+            }
+
+            StartStop = true;
 
         }
 
