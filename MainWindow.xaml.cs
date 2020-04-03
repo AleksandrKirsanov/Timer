@@ -348,22 +348,19 @@ namespace Timer
         #region кнопки Start  и Stop
         private void START_Click(object sender, RoutedEventArgs e)
         {
-            int interval = 0;
+            int IntervalDate = 0;
+            int intervalTimer = 0;
             int.TryParse(Hour.Content.ToString(), out int HourTimer);
             int.TryParse(Minute.Content.ToString(), out int MinuteTimer);
             int.TryParse(Second.Content.ToString(), out int SecondTimer);
+            // Подсчитаем интервал времени с начала суток в секундах, выставленный в задании
+            intervalTimer = intervalTimer + SecondTimer + MinuteTimer*60+HourTimer*3600;
+            //Подсчитаем количество секунд, прошедших с начала текущих суток
+            DateTime dateTime = new DateTime();
+            dateTime = DateTime.Now;
+            IntervalDate = IntervalDate + dateTime.Second + dateTime.Minute * 60 + dateTime.Hour;
 
-
-            DateTime CurrenTime = DateTime.Now;
-            if (CurrenTime.Hour <= HourTimer)
-            {
-                interval = interval + ((HourTimer - CurrenTime.Hour) * 3600);
-            }
-            else
-            {
-                interval = interval + (HourTimer + (24 - CurrenTime.Hour)) * 3600;
-            }
-            TimeInterval.Content = interval.ToString();
+            
         }
         private void STOP_Click(object sender, RoutedEventArgs e)
         {
