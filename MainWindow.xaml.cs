@@ -302,7 +302,7 @@ namespace Timer
             Second.Content = Global.Second;
         }
 
-        void Avto()
+        void Avto() // Метод для заполнения значений часов, минут и секунд 
         {
             switch (Avtozapolnenie)
             {
@@ -328,13 +328,39 @@ namespace Timer
                     break;
             }
         }
+
+        int IntervalTimer() // метод возвращает величину установленного интервала времени в милисекундах.
+        {
+            int interval = 0;
+            int.TryParse(Second.Content.ToString(), out int rezultSecond);
+            interval = interval + rezultSecond;
+            int.TryParse(Minute.Content.ToString(), out int rezultMinute);
+            interval = interval + rezultMinute * 60;
+            int.TryParse(Hour.Content.ToString(), out int rezultHour);
+            interval = interval + rezultHour * 3600;
+            interval = interval * 1000;
+
+            return interval;
+        }
+
         #endregion
 
         #region кнопки Start  и Stop
         private void START_Click(object sender, RoutedEventArgs e)
         {
+            int IntervalDate = 0;
+            int intervalTimer = 0;
+            int.TryParse(Hour.Content.ToString(), out int HourTimer);
+            int.TryParse(Minute.Content.ToString(), out int MinuteTimer);
+            int.TryParse(Second.Content.ToString(), out int SecondTimer);
+            // Подсчитаем интервал времени с начала суток в секундах, выставленный в задании
+            intervalTimer = intervalTimer + SecondTimer + MinuteTimer*60+HourTimer*3600;
+            //Подсчитаем количество секунд, прошедших с начала текущих суток
+            DateTime dateTime = new DateTime();
+            dateTime = DateTime.Now;
+            IntervalDate = IntervalDate + dateTime.Second + dateTime.Minute * 60 + dateTime.Hour;
 
-
+            
         }
         private void STOP_Click(object sender, RoutedEventArgs e)
         {
