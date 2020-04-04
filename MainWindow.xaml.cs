@@ -50,6 +50,7 @@ namespace Timer
             if (StartStop && IntervalZadanija == 0)
             {
                 // Здесь выполнение задания
+                StopKomp();
                 TimeInterval.Content = "Сработало!!!!";
             }
             else if (StartStop && IntervalZadanija > 0)
@@ -412,6 +413,18 @@ namespace Timer
             }
         }
 
+        void StopKomp() // Метод запускает командную строку для выключения компа
+        {
+            StartStop = false;
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                // WindowStyle = ProcessWindowStyle.Hidden,
+                // Arguments = "/c shutdown -s -f -t 00"
+
+            });
+
+        }
 
         #endregion
 
@@ -420,32 +433,40 @@ namespace Timer
         #region кнопки Start  и Stop
         private void START_Click(object sender, RoutedEventArgs e)// Обработчик кнопки Start обращается к методам вычисления интервала и запускает выполнение задания
         {
-
-            switch (Global.Mode)
+            if (StartStop)
             {
-                case "RadioTimeOff":
-                   IntervalZadanija =IntervalTimerTime();
-                    break;
-                case "RadioInterwalOff":
-                   IntervalZadanija =IntervalTimerInternal();
-                    break;
-                case "RadioTimeSleep":
-                    IntervalZadanija = IntervalTimerTime();
-                    break;
-                case "RadioIntervalSleep":
-                    IntervalZadanija = IntervalTimerInternal();
-                    break;
-                case "RadioTimeSignal":
-                    IntervalZadanija = IntervalTimerTime();
-                    break;
-                case "RadioIntervalSignal":
-                    IntervalZadanija = IntervalTimerInternal();
-                    break;
-                default:
-                    break;
+                MessageBox.Show("Задание уже запущено");
+            }
+            else
+            {
+                switch (Global.Mode)
+                {
+                    case "RadioTimeOff":
+                        IntervalZadanija = IntervalTimerTime();
+                        break;
+                    case "RadioInterwalOff":
+                        IntervalZadanija = IntervalTimerInternal();
+                        break;
+                    case "RadioTimeSleep":
+                        IntervalZadanija = IntervalTimerTime();
+                        break;
+                    case "RadioIntervalSleep":
+                        IntervalZadanija = IntervalTimerInternal();
+                        break;
+                    case "RadioTimeSignal":
+                        IntervalZadanija = IntervalTimerTime();
+                        break;
+                    case "RadioIntervalSignal":
+                        IntervalZadanija = IntervalTimerInternal();
+                        break;
+                    default:
+                        break;
+                }
+
+                StartStop = true; // флаг разрешения задания
             }
 
-            StartStop = true;
+
 
         }
 
