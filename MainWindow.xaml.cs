@@ -50,7 +50,7 @@ namespace Timer
             if (StartStop && IntervalZadanija == 0)
             {
                 // Здесь выполнение задания
-                StopKomp();
+                SleepKomp();
                 TimeInterval.Content = "Сработало!!!!";
             }
             else if (StartStop && IntervalZadanija > 0)
@@ -421,6 +421,21 @@ namespace Timer
                 FileName = "cmd.exe",
                 // WindowStyle = ProcessWindowStyle.Hidden,
                 // Arguments = "/c shutdown -s -f -t 00"
+
+            });
+
+        }
+
+        void SleepKomp() // Метод запускает командную строку для перевода компа в спящий режим
+        {
+            StartStop = false;
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                // WindowStyle = ProcessWindowStyle.Hidden,
+                 Arguments = "/c rundll32 powrprof.dll,SetSuspendState 0,1,0"
+
+
 
             });
 
