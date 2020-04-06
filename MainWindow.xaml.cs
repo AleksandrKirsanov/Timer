@@ -25,13 +25,14 @@ namespace Timer
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
 
-    delegate void Scenario();
+    delegate void Scenario(int x);
+    
 
     public partial class MainWindow : Window
     {
 
-
-
+        Scenario Scenario;
+        int PlayingTime = 0;// Время звучания мелодии
         string Avtozapolnenie = "No"; //Переменная для управления заполнением 
         int IntervalZadanija = 0; // Остаток времени до выполнения задания
         bool StartStop = false;
@@ -41,7 +42,7 @@ namespace Timer
             Avto();
         }// Таймер задержки автозаполнения
 
-        private void Timer_Tick(object sender, EventArgs e) // таймер выводит на форму текущее время
+        private void Timer_Tick(object sender, EventArgs e) // таймер выводит на форму текущее время  и запускает задание 
         {
             DateTime dateTime = new DateTime();
             dateTime = DateTime.Now;
@@ -75,7 +76,8 @@ namespace Timer
             DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) }; //Таймер для часов -  1 секунда 
             timer.Tick += Timer_Tick;
             timer.Start();
-            RadioTimeOff.IsChecked = true;
+            RadioTimeOff.IsChecked = true; // устанавливаем первую кнопку 
+           
 
 
 
@@ -396,34 +398,44 @@ namespace Timer
         void scenario() // метод реализации сценария выполнения задания НЕ ЗАКОНЧЕН!!!
         {
             switch (Global.Mode)
-            {
+            { 
                 case "RadioTimeOff":
+                    IntervalZadanija = IntervalTimerTime();
+                    if (IntervalZadanija>PlayingTime ) 
+                    {
+                        Scenario = StopKomp(PlayingTime);
+                    }
                     break;
                 case "RadioInterwalOff":
+                    IntervalZadanija = IntervalTimerInternal();
                     break;
                 case "RadioTimeSleep":
+                    IntervalZadanija = IntervalTimerTime();
                     break;
                 case "RadioIntervalSleep":
+                    IntervalZadanija = IntervalTimerInternal();
                     break;
                 case "RadioTimeSignal":
+                    IntervalZadanija = IntervalTimerTime();
                     break;
                 case "RadioIntervalSignal":
+                    IntervalZadanija = IntervalTimerInternal();
                     break;
                 default:
                     break;
             }
         }
 
-        void StopKomp() // Метод запускает командную строку для выключения компа
+        void StopKomp(int pause) // Метод запускает командную строку для выключения компа с отсрочкой по параметру передаваемому в метод
         {
             StartStop = false;
             Process.Start(new ProcessStartInfo
             {
                 FileName = "cmd.exe",
                 // WindowStyle = ProcessWindowStyle.Hidden,
-                // Arguments = "/c shutdown -s -f -t 00"
+                Arguments = "/c shutdown -s -f -t " + pause.ToString()
 
-            });
+            }); ;
 
         }
 
@@ -434,7 +446,7 @@ namespace Timer
             {
                 FileName = "cmd.exe",
                 // WindowStyle = ProcessWindowStyle.Hidden,
-                // Arguments = "/c rundll32 powrprof.dll,SetSuspendState 0,1,0"
+                // Arguments = "/c rundll32 powrprof.dll,SetSuspendState 0,1,0" ...
 
 
 

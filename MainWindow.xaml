@@ -28,6 +28,7 @@
                 <RadioButton x:Name="RadioIntervalSleep" Content="Сон по интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_3"/>
                 <RadioButton x:Name="RadioTimeSignal" Content="Сигнал по времени" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_4"/>
                 <RadioButton x:Name="RadioIntervalSignal"  Content="Сигнал по у интервалу" GroupName="Radio1" VerticalContentAlignment="Center" Checked="RadioButton_Checked_5"/>
+                <CheckBox Content="Включить звук" x:Name="DenToun" Margin="15,25,15,5" IsChecked="True"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Column="1">
