@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Diagnostics;
+using WMPLib;
 
 
 
@@ -433,13 +434,23 @@ namespace Timer
             {
                 FileName = "cmd.exe",
                 // WindowStyle = ProcessWindowStyle.Hidden,
-                 Arguments = "/c rundll32 powrprof.dll,SetSuspendState 0,1,0"
+                // Arguments = "/c rundll32 powrprof.dll,SetSuspendState 0,1,0"
 
 
 
             });
 
         }
+
+         bool Mp3Play() // Метод проигрывает звук
+        {
+            WindowsMediaPlayer player = new WindowsMediaPlayer();
+            player.URL = @"C:\Users\2013g\source\repos\AleksandrKirsanov\Timer\Resources\Sound_06407.mp3";
+           
+
+            return true;
+        }
+
 
         #endregion
 
@@ -478,7 +489,8 @@ namespace Timer
                         break;
                 }
 
-                StartStop = true; // флаг разрешения задания
+                //  StartStop = true; // флаг разрешения задания
+                Mp3Play();
             }
 
 
