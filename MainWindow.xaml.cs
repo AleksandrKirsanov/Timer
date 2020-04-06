@@ -52,7 +52,7 @@ namespace Timer
             if (StartStop && IntervalZadanija == 0)
             {
                 // Здесь выполнение задания
-                SleepKomp();
+               
                 TimeInterval.Content = "Сработало!!!!";
             }
             else if (StartStop && IntervalZadanija > 0)
@@ -403,7 +403,7 @@ namespace Timer
                     IntervalZadanija = IntervalTimerTime();
                     if (IntervalZadanija>PlayingTime ) 
                     {
-                        Scenario = StopKomp(PlayingTime);
+                        Scenario = StopKomp;
                     }
                     break;
                 case "RadioInterwalOff":
